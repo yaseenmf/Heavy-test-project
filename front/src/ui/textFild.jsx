@@ -9,7 +9,6 @@ function TextField({ label, name, value, onChange }) {
         onChange={onChange}
         id={name}
         className="textField__input"
-        type="number"
         name={name}
       />
     </div>

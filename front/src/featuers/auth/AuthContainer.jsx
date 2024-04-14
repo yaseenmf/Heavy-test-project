@@ -28,7 +28,7 @@ function AuthContainer() {
   };
 
   const [step, setStep] = useState(2);
-  const [phoneNumber, setPhoneNumber] = useState("09117251402");
+  const [phoneNumber, setPhoneNumber] = useState("");
 
   const renderStep = () => {
     switch (step) {

@@ -6,6 +6,7 @@ import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import { HiArrowRight } from "react-icons/hi";
 import { CiEdit } from "react-icons/ci";
+import Loading from "./../../ui/loading";
 
 const RESEND_TIME = 90;
 
@@ -24,19 +25,23 @@ function checkOTPForm({ phoneNumber, onBack, onResendOtp, otpResponse }) {
     };
   }, [time]);
 
-  const { isPending, mutateAsync, error } = useMutation({
+  const { isPending, mutateAsync } = useMutation({
     mutationFn: checkOtp,
   });
 
   const checkOtpHandler = async (e) => {
     e.preventDefault();
     try {
-      const { user, error, message } = await mutateAsync({ phoneNumber, otp });
+      const { user, message } = await mutateAsync({ phoneNumber, otp });
       toast.success(message);
       if (!user.isActive) return navigate("/complete-profile");
+      if (user.statue !== 2) {
+        navigate("/");
+        toast("پروفایل شما در انتظار تایید است.", { icon: "👍" });
+        return;
+      }
       if (user.role === "OWNER") return navigate("/owner");
       if (user.role === "FREELANCER") return navigate("/freelancer");
-      if (user.role === "ADMIN") return navigate("/admin");
     } catch (err) {
       toast.error(err?.response?.data?.message);
     }
@@ -79,7 +84,15 @@ function checkOTPForm({ phoneNumber, onBack, onResendOtp, otpResponse }) {
             borderRadius: "0.5rem",
           }}
         />
-        <button className="btn btn--primary w-full">تایید</button>
+        <div>
+          {isPending ? (
+            <Loading />
+          ) : (
+            <button type="submit" className="btn btn--primary w-full">
+              تایید
+            </button>
+          )}
+        </div>
       </form>
     </div>
   );
