@@ -1,12 +1,12 @@
 import { useMutation } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
-import OTPInput from "react-otp-input";
-import { checkOtp } from "../../services/authServce";
 import toast from "react-hot-toast";
-import { useNavigate } from "react-router-dom";
-import { HiArrowRight } from "react-icons/hi";
 import { CiEdit } from "react-icons/ci";
-import Loading from "./../../ui/loading";
+import { HiArrowRight } from "react-icons/hi";
+import OTPInput from "react-otp-input";
+import { useNavigate } from "react-router-dom";
+import { checkOtp } from "../../services/authService";
+import Loading from "../../ui/loading";
 
 const RESEND_TIME = 90;
 

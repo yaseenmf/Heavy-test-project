@@ -1,5 +1,5 @@
+import Loading from "../../ui/loading";
 import TextField from "../../ui/textFild";
-import Loading from "./../../ui/loading";
 
 function sendOTPForm({ isSendOtp, onSubmit, phoneNumber, onChange }) {
   return (

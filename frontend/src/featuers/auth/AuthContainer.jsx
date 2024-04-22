@@ -2,7 +2,7 @@ import { useState } from "react";
 import SendOTPForm from "./sendOTPForm";
 import CheckOTPForm from "./CheckOTPForm";
 import toast from "react-hot-toast";
-import { getOtp } from "../../services/authServce";
+import { getOtp } from "../../services/authService";
 import { useMutation } from "@tanstack/react-query";
 
 function AuthContainer() {
