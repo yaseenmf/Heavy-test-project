@@ -9,7 +9,7 @@ function ProjectTable() {
 
   if (isLoading) return <Loading />;
 
-  // if (!projects.length) return <Empty resourceName="پروژه" />;
+  if (!projects.length) return <Empty resourceName="پروژه" />;
 
   return (
     <div className="bg-secondary-0 overflow-x-auto ">
